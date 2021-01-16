@@ -44,15 +44,22 @@ int SumArguments(int* b, const int size, int i, int s){
 		s += 1;
 	}
 	if (i<size-1){
-		return Sum(b, size, i+1, s);
+		return SumArguments(b, size, i+1, s);
 	}
 	else{
 		return s;
 	}
 }
 
-
-
+void ChangeToZero(int*b, const int size, int i){
+	if (b[i] > 0 && b[i] % 2 !=0)
+	{
+		b[i] = 0;
+	}
+	if (i<size-1){
+		return ChangeToZero(b, size, i+1);
+}
+}
 
 int main(){
 
@@ -67,10 +74,13 @@ int main(){
 
 	Print(b, n, 0);
 
-	cout << "Sum: " << Sum(b, n, 0, 0) << endl << "\n";
+	cout << "\nSum: " << Sum(b, n, 0, 0) << endl;
 
-	cout << SumArguments(b, n, 0, 0) << endl;
-	
+	cout << "\nSum of arguments: " << SumArguments(b, n, 0, 0) << endl << "\n";
+
+	ChangeToZero(b, n, 0);
+
+	Print(b, n, 0);
 
 	return 0;
 }
